@@ -22,8 +22,6 @@ jobs:
 
     - name: '🧰 Checkout'
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
 
     - name: '${{ matrix.icon }} Setup MSYS2'
       uses: msys2/setup-msys2@v2
@@ -73,16 +71,22 @@ jobs:
           usbredir:p
           zstd:p
           libslirp:p
-    - name: '🚧 Build qemu (arm/aarch64)'
+
+    - name: '🚧 Build qemu (arm & aarch64)'
       run: |
           ./configure --enable-gtk --enable-sdl --enable-fdt=system --enable-avx2 --target-list=arm-softmmu,aarch64-softmmu
-          make -j64
+          make -j32
           
     - name: Prepare Artifacts
       shell: cmd
       run: |
-          mkdir ${{ github.workspace }}\artifacts
-          move D:\a\qemu\qemu\build ${{ github.workspace }}\artifacts
+          md ${{ github.workspace }}\artifacts
+          cd ${{ github.workspace }}\artifacts
+          copy D:\a\_temp\msys64\mingw64\bin\*.dll
+          md lib\gdk-pixbuf-2.0\2.10.0
+          fsutil file createNew lib\gdk-pixbuf-2.0\2.10.0\loaders.cache
+          move D:\a\qemu\qemu\build\*.exe
+          move D:\a\qemu\qemu\build\pc-bios share
 
     - name: Upload artifact
       uses: actions/upload-artifact@v4.3.4
