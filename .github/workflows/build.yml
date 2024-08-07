@@ -87,7 +87,10 @@ jobs:
           fsutil file createNew lib\gdk-pixbuf-2.0\2.10.0\loaders.cache
           move D:\a\qemu\qemu\build\*.exe
           move D:\a\qemu\qemu\build\pc-bios share
-
+          robocopy D:\a\qemu\qemu\pc-bios share /xn /xo /mov
+          del share\*.gz
+          move D:\a\qemu\qemu\build\po share\locale
+          
     - name: Upload artifact
       uses: actions/upload-artifact@v4.3.4
       with:
