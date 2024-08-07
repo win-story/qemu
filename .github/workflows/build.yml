@@ -74,7 +74,7 @@ jobs:
 
     - name: '🚧 Build qemu (arm & aarch64)'
       run: |
-          ./configure --enable-gtk --enable-sdl --enable-fdt=system --enable-avx2 --target-list=arm-softmmu,aarch64-softmmu
+          ./configure --enable-gtk --enable-sdl --enable-fdt=system --enable-avx2 --target-list=arm-softmmu,aarch64-softmmu --static 
           make -j32
           
     - name: Prepare Artifacts
