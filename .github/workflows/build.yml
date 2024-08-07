@@ -84,7 +84,7 @@ jobs:
           cd ${{ github.workspace }}\artifacts
           copy D:\a\_temp\msys64\mingw64\bin\*.dll
           md lib\gdk-pixbuf-2.0\2.10.0
-          fsutil file createNew lib\gdk-pixbuf-2.0\2.10.0\loaders.cache
+          fsutil file createNew lib\gdk-pixbuf-2.0\2.10.0\loaders.cache 0
           move D:\a\qemu\qemu\build\*.exe
           move D:\a\qemu\qemu\build\pc-bios share
           robocopy D:\a\qemu\qemu\pc-bios share /xn /xo /mov
