@@ -87,8 +87,6 @@ jobs:
           move D:\a\qemu\qemu\build\*.exe
           move D:\a\qemu\qemu\build\pc-bios share
           robocopy D:\a\qemu\qemu\pc-bios share /xn /xo /mov
-          del share\*.gz
-          move D:\a\qemu\qemu\build\po share\locale
           
     - name: Upload artifact
       uses: actions/upload-artifact@v4.3.4
