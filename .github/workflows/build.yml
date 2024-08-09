@@ -86,7 +86,7 @@ jobs:
           cd ${{ github.workspace }}\artifacts
           move D:\a\qemu\qemu\build\*.exe
           move D:\a\qemu\qemu\build\pc-bios share
-          robocopy D:\a\qemu\qemu\pc-bios share /xn /xo /mov
+          xcopy D:\a\qemu\qemu\pc-bios share /e /y /h || exit 0
           
     - name: Upload artifact
       uses: actions/upload-artifact@v4.3.4
