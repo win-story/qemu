@@ -888,7 +888,7 @@ if get_option('kvm').allowed() and host_os == 'linux'
   accelerators += 'CONFIG_KVM'
 endif
 if get_option('whpx').allowed() and host_os == 'windows'
-  if get_option('whpx').enabled() and host_machine.cpu() != 'x86_64'
+  if get_option('whpx').enabled() and host_machine.cpu() != 'x86_64' and host_machine.cpu() != 'aarch64'
     error('WHPX requires 64-bit host')
   elif cc.has_header('winhvplatform.h', required: get_option('whpx')) and \
        cc.has_header('winhvemulation.h', required: get_option('whpx'))
