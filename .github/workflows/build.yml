@@ -23,8 +23,8 @@ jobs:
             mode: static
     runs-on: ${{ matrix.os }}
     env:
-      dynamic_flags: '--enable-gtk'
-      static_flags: '--disable-gtk --disable-spice --disable-usb-redir --disable-smartcard --disable-gnutls --disable-libssh --disable-vnc-sasl --static'
+      dynamic_flags: '--enable-whpx --enable-gtk'
+      static_flags: '--enable-whpx --disable-gtk --disable-spice --disable-usb-redir --disable-smartcard --disable-gnutls --disable-libssh --disable-vnc-sasl --static'
       static_extra_cflags: '-DCURL_STATICLIB -DLIBSSH_STATIC -DLIBSLIRP_STATIC -DCAIRO_WIN32_STATIC_BUILD'
       clang_extra_cflags: '-Wno-missing-prototypes -Wno-sometimes-uninitialized -Wno-pragma-pack'
 
@@ -200,4 +200,5 @@ jobs:
       with:
         name: ${{ format('QEMU {0} Linux (Ubuntu {1} {2} build)', env.version, matrix.sysver, endsWith(matrix.os, 'arm') && 'arm64' || 'x64') }}
         path: ${{ github.workspace }}/build
+
         compression-level: 9
